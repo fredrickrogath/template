@@ -3,6 +3,9 @@
     :dark="isDark"
       class="pa-12"
       flat
+      max-width="200px"
+      style="position:fixed"
+      v-if="$vuetify.breakpoint.smAndUp"
     >
       <v-card
         elevation="12"
@@ -15,6 +18,7 @@
           <v-list
             dense
             rounded
+            class="text-center"
           >
             <v-list-item
               v-for="item in items"
@@ -33,6 +37,51 @@
         </v-navigation-drawer>
       </v-card>
     </v-card>
+
+    <v-expansion-panels style="position:fixed" v-else :dark="isDark">
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+        SideBar
+      </v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <v-card
+    :dark="isDark"
+      class="pa-12"
+      flat
+    >
+      <v-card
+        elevation="12"
+        width="256"
+      >
+        <v-navigation-drawer
+          floating
+          permanent
+        >
+          <v-list
+            dense
+            rounded
+            class="text-center"
+          >
+            <v-list-item
+              v-for="item in items"
+              :key="item.title"
+              link
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+  
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+      </v-card>
+    </v-card>
+      </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </template>
 
 <script setup>
@@ -48,8 +97,8 @@ const toggleDark = useToggle(isDark);
       return {
         items: [
           { title: 'Home', icon: 'mdi-view-dashboard' },
-          { title: 'About1', icon: 'mdi-forum' },
-          { title: 'About2', icon: 'mdi-forum' },
+          { title: 'Chats', icon: 'mdi-forum' },
+          { title: 'Friends', icon: 'mdi-forum' },
           { title: 'About3', icon: 'mdi-forum' },
           { title: 'About4', icon: 'mdi-forum' },
           { title: 'About5', icon: 'mdi-forum' },

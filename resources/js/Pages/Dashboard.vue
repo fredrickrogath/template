@@ -8,15 +8,15 @@
 
        
             <v-row>
-                <v-col sm="3" md="2" offset-lg="1">
+                <!-- <v-col v-if="showOnSroll" sm="3" :md="dynamicCol" offset-lg="1"> -->
                     <!-- md 2 inaipa sidebar area besides the main content area -->
-                    <side-bar></side-bar>
-                </v-col>
-                <v-col sm="9" md="10" offset-sm="7">
+                    <!-- <side-bar></side-bar> -->
+                <!-- </v-col> -->
+                <v-col sm="9" md="12" offset-sm="7">
                     <!-- md 10 inaipa main content area besides the sidebar area -->
                     <div class="py-0">
                         
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-xl sm:rounded-lg">
                     <!-- <welcome /> -->
                     <v-row>
@@ -24,32 +24,11 @@
                             <v-row>
                                 <v-col
                                     sm="6"
-                                    md="4"
-                                    v-for="(post, i) in $page.props.posts.slice(
-                                        0,
-                                        9
-                                    )"
+                                    md="3"
+                                    v-for="(post, i) in posts"
                                     :key="post.id + i"
                                 >
-                                    <!-- <post-card></post-card> -->
                                     <v-card outlined :dark="isDark">
-                                        <!-- <v-card outlined :dark="true">
-                                        <v-img src="https://picsum.photos/500/500"
-                                        lazy-src="https://picsum.photos/500/500"
-                                        >
-                                        <template v-slot:placeholder>
-                                                <v-row
-                                                    class="fill-height ma-0 flex items-center"
-                                                    align="center"
-                                                    justify="center"
-                                                >
-                                                    <v-progress-circular
-                                                        indeterminate
-                                                        class="text-white"
-                                                    ></v-progress-circular>
-                                                </v-row>
-                                            </template>
-                                    </v-img>-->
                                         <v-img
                                         :src="post.post_url"
                                         :lazy-src="post.post_url"
@@ -67,11 +46,7 @@
                                                 </v-row>
                                             </template>
                                         </v-img>
-                                        <!-- <img
-                                            src="https://picsum.photos/500/500"
-                                            class="transition ease-in-out delay-190 hover:-translate-y-1 hover:scale-110 duration-300"
-                                        /> -->
-                                        <v-card-title>
+                                        <v-card-title>{{ counter }}
                                             {{ post.post_title }}
                                         </v-card-title>
                                         <v-card-subtitle>
@@ -83,6 +58,7 @@
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
+                                                    @click="incrementByOne"
                                                 >
                                                     <path
                                                         stroke-linecap="round"
@@ -138,17 +114,13 @@
                                             <div class="text-sm font-semibold dark:text-white text-gray-700">
                                                 11,552 Likes
                                             </div>
-                                            <div class="text-sm dark:text-white text-gray-700">
+                                            <div class="text-sm dark:text-white text-gray-700 text-truncate">
                                                 <span class="font-semibold"
                                                     >gnfi</span
                                                 >
-                                                Saat ini Indonesia memiliki 34
-                                                provinsi, jumlah tersebut
-                                                <!-- diproyeksi bertambah seiring
-                                                dengan adanya usulan 30 Daerah -->
-                                                Otonomi Baru (DOB) khusus untuk
-                                                provinsi, dan 9 diantaranya
-                                                berada di Pulau Jawa.
+                                                <span>
+                                                    {{ post.post_body | truncate(150, '...') }}
+                                                </span>
                                             </div>
 
                                             <div class="flex justify-between items-center">
@@ -158,7 +130,7 @@
                                                 </div>
     
                                                 <div class="text-gray-400 text-xs">
-                                                    2 HOURS AGO
+                                                    {{ post.created_at }}
                                                 </div>
                                             </div>
 
@@ -170,7 +142,13 @@
                     </v-row>
                 </div>
             </div>
-        </div>
+            <div v-if="showSpinner" class="text-center py-2">
+            <v-progress-circular
+             class="dark:text-white text-purple-500"
+              :size="40"
+              indeterminate
+           ></v-progress-circular></div>
+             </div>
                 </v-col>
             </v-row>
     </app-layout>
@@ -197,5 +175,105 @@ export default {
         PostCard,
         SideBar
     },
+
+    filters: {
+
+    //For filter long sentences into a limited number of characters
+        truncate: function (text, length, suffix) {
+            if (text.length > length) {
+                return text.substring(0, length) + suffix;
+            } else {
+                return text;
+            }
+        },
+    },
+
+    mounted() {
+        var prevScrollpos = window.pageYOffset;
+
+
+        this.showSpinner = true;
+        this.getPosts();
+        window.onscroll = () => {
+            if (
+                window.scrollY + window.innerHeight >=
+                    document.body.scrollHeight &&
+                !this.nextPageLoaded
+            ) {
+                console.log("fired");
+                this.nextPageLoaded = true;
+                this.showSpinner = true;
+                this.nextPage();
+                // this.handleLoadMore();
+            }
+
+
+            var currentScrollPos = window.pageYOffset;
+              if (prevScrollpos > currentScrollPos) {
+                this.showOnSroll = true;
+                // document.getElementById("navbar").style.top = "0";
+              } else {
+                this.showOnSroll = false;
+                // document.getElementById("navbar").style.top = "0";
+                // document.getElementById("navbar").style.top = "-50px";
+              }
+              prevScrollpos = currentScrollPos;
+        };
+    },
+
+    data() {
+        return {
+            contentFullWidthWhenSideBarHides: 'max-w-7xl',
+            showOnSroll: true,
+            dynamicCol:2,
+            showSpinner: false,
+            posts: [],
+            page: 1,
+        };
+    },
+
+    methods: {
+        //Get the first post with page=1
+        getPosts() {
+            console.log("Loading next page");
+            axios.get("/posts?page=1").then((response) => {
+                this.posts = response.data.data.data;
+                //increament url pages
+                this.page = this.page + 1;
+            });
+        },
+
+        nextPage() {
+            console.log(this.page)
+            console.log("Loading next page");
+            axios.get("/posts?page=" + this.page).then((response) => {
+                response.data.data.data.forEach(data => {
+                    this.posts.push(data)
+                });
+                // this.posts.push(response.data.data.data[0]);
+                // console.log(this.posts);
+                // this.$store.commit("profileMedia", response.data.media);
+                setTimeout(() => {
+                    this.showSpinner = false;
+                }, 9000);
+                this.nextPageLoaded = false;
+            });
+            
+            this.page = this.page + 1;
+            
+        },
+
+        incrementByOne(){
+            this.$store.dispatch('numbers/increment', {value: 5});
+        }
+
+    },
+
+    computed: {
+    counter(){
+                return this.$store.getters['numbers/finalCounter2'];
+            }
+        }
+
 };
 </script>

@@ -31,3 +31,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         'posts' => Post::all(),
     ]);
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/posts', function () {
+    return Response::json([
+        'data' => Post::paginate(9)
+    ], 201);
+})->name('posts');

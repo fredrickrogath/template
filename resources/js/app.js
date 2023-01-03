@@ -10,19 +10,26 @@ import PortalVue from "portal-vue";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
-import colors from 'vuetify/lib/util/colors'
+import store from '@/Store/index';
+
+
+// import colors from 'vuetify/lib/util/colors'
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
 //also add this line
 Vue.use(Vuetify);
+Vue.use(PerfectScrollbar);
 
 const app = document.getElementById("app");
 
 new Vue({
     //finally add this line
+    store,
     vuetify: new Vuetify({
     }),
     render: (h) =>

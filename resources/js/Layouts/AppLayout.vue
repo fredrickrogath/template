@@ -6,7 +6,7 @@
             class="min-h-screen shadow-xl"
             :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
         >
-            <nav class="border-b border-gray-100 dark:border-gray-700">
+            <nav class="border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50" :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -618,7 +618,7 @@
             </header> -->
 
             <!-- Page Content -->
-            <main  class="py-2">
+            <main  class="py-0">
                 <slot></slot>
             </main>
 
