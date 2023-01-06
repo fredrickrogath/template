@@ -19,6 +19,7 @@
                     class="absolute z-50 mt-2 rounded-md shadow-lg"
                     :class="[widthClass, alignmentClasses]"
                     style="display: none;"
+                    :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
                     @click="open = false">
                 <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
                     <slot name="content"></slot>
@@ -27,6 +28,13 @@
         </transition>
     </div>
 </template>
+
+<script setup>
+import { useDark, useToggle } from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+</script>
 
 <script>
     export default {
@@ -38,7 +46,7 @@
                 default: '48'
             },
             contentClasses: {
-                default: () => ['py-1', 'bg-white dark:bg-gray-900']
+                default: () => ['py-1', '']
             }
         },
 

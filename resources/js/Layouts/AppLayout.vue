@@ -6,7 +6,7 @@
             class="min-h-screen shadow-xl"
             :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
         >
-            <nav class="border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50" :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]">
+            <nav v-if="showTopBarComputed" class="border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50" :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -36,10 +36,10 @@
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                             >
                                 <jet-nav-link
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard2')"
+                                    :href="route('tables.show')"
+                                    :active="route().current('tables.show')"
                                 >
-                                    Dashboard
+                                    Tables
                                 </jet-nav-link>
                             </div>
 
@@ -58,7 +58,8 @@
                                 <!-- Dark mode btn -->
                                 <button
                                     @click="toggleDark()"
-                                    class="px-2 py-1 rounded-full text-gray-700 dark:text-gray-400 bg-white dark:bg-gray-900"
+                                    class="px-2 py-1 rounded-full text-gray-700 dark:text-gray-400 bg-white dark:bg-transparent"
+                                    :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
                                 >
                                     <svg
                                         v-if="isDark"
@@ -283,7 +284,7 @@
                                     <template #content>
                                         <!-- Account Management -->
                                         <div
-                                            class="block px-4 py-2 text-xs text-gray-700"
+                                            class="block px-4 py-2 text-xs text-gray-400"
                                         >
                                             Manage Account
                                         </div>
@@ -327,6 +328,7 @@
                             <button
                                 @click="toggleDark()"
                                 class="px-2 py-1 rounded-full text-gray-700 dark:text-gray-400 bg-white dark:bg-gray-900"
+                                :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
                             >
                                 <svg
                                     v-if="isDark"
@@ -618,7 +620,7 @@
             </header> -->
 
             <!-- Page Content -->
-            <main  class="py-0">
+            <main  class="py-1">
                 <slot></slot>
             </main>
 
@@ -678,6 +680,12 @@ export default {
             this.$inertia.post(route("logout"));
         },
     },
+
+    computed: {
+        showTopBarComputed(){
+            return this.$store.getters['showTopBar'];
+        },
+    }
 };
 </script>
 

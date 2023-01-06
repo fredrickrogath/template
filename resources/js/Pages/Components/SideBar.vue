@@ -21,8 +21,42 @@
             class="text-center"
           >
             <v-list-item
-              v-for="item in items"
+              v-for="(item, i) in items"
               :key="item.title"
+              link
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+  
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+      </v-card>
+
+      <div class="h-11"></div>
+
+
+      <v-card
+        elevation="12"
+        width="256"
+      >
+        <v-navigation-drawer
+          floating
+          permanent
+        >
+          <v-list
+            dense
+            rounded
+            class="text-center"
+          >
+            <v-list-item
+              v-for="(item, i) in items"
+              :key="item.title"
+              v-if="i < 3"
               link
             >
               <v-list-item-icon>
@@ -103,8 +137,8 @@ const toggleDark = useToggle(isDark);
           { title: 'About4', icon: 'mdi-forum' },
           { title: 'About5', icon: 'mdi-forum' },
           { title: 'About6', icon: 'mdi-forum' },
-          { title: 'About7', icon: 'mdi-forum' },
-          { title: 'About8', icon: 'mdi-forum' },
+          // { title: 'About7', icon: 'mdi-forum' },
+          // { title: 'About8', icon: 'mdi-forum' },
         ],
       }
     },

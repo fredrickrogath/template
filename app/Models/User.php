@@ -58,4 +58,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public const is_super_admin = 1;
+
+    public const is_hospital_admin = 2;
+
+    public const is_a_doctor = 3;
+
+    public const is_a_patient = 4;
 }
