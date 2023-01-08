@@ -1,122 +1,107 @@
 <template>
     <v-card
-    :dark="isDark"
-      class="pa-12"
-      flat
-      max-width="200px"
-      style="position:fixed"
-      v-if="$vuetify.breakpoint.smAndUp"
+        :dark="isDark"
+        class="pa-12"
+        flat
+        max-width="200px"
+        style="position: fixed"
+        v-if="$vuetify.breakpoint.smAndUp"
     >
-      <v-card
-        elevation="12"
-        width="256"
-      >
-        <v-navigation-drawer
-          floating
-          permanent
-        >
-          <v-list
-            dense
-            rounded
-            class="text-center"
-          >
-            <v-list-item
-              v-for="(item, i) in items"
-              :key="item.title"
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-  
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-      </v-card>
+        <v-card width="256">
+            <v-navigation-drawer floating permanent>
+                <v-list dense rounded class="text-center">
+                    <v-list-item
+                        v-for="(item, i) in items"
+                        :key="item.title"
+                        link
+                        class="border-r-4 border-indigo-500"
+                        :class="
+                            route().current($page.props.page + item.route)
+                                ? 'bg-indigo-100 dark:bg-gray-700'
+                                : ''
+                        "
+                    >
+                        <my-custom-link
+                            :href="route($page.props.page + item.route)"
+                            :active="route().current($page.props.page + item.route)"
+                        >
+                            <v-list-item-icon>
+                                <v-icon>{{ item.icon }}</v-icon>
+                            </v-list-item-icon>
 
-      <div class="h-11"></div>
+                            <v-list-item-content>
+                                <v-list-item-title>{{
+                                    item.title
+                                }}</v-list-item-title>
+                            </v-list-item-content>
+                        </my-custom-link>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </v-card>
 
+        <div class="h-11"></div>
 
-      <v-card
-        elevation="12"
-        width="256"
-      >
-        <v-navigation-drawer
-          floating
-          permanent
-        >
-          <v-list
-            dense
-            rounded
-            class="text-center"
-          >
-            <v-list-item
-              v-for="(item, i) in items"
-              :key="item.title"
-              v-if="i < 3"
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-  
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-      </v-card>
+        <v-card elevation="12" width="256">
+            <v-navigation-drawer floating permanent>
+                <v-list dense rounded class="text-center">
+                    <v-list-item
+                        v-for="(item, i) in items"
+                        :key="item.title"
+                        v-if="i < 2"
+                        link
+                        class="border-r-4 border-indigo-500"
+                        :class="
+                            route().current($page.props.page + item.route)
+                                ? 'bg-indigo-100 dark:bg-gray-700 border-b-1 border-indigo-400'
+                                : '' "
+                    >
+                        <v-list-item-icon>
+                            <v-icon>{{ item.icon }}</v-icon>
+                        </v-list-item-icon>
+
+                        <v-list-item-content>
+                            <v-list-item-title>{{
+                                item.title
+                            }}</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </v-card>
     </v-card>
 
-    <v-expansion-panels style="position:fixed" v-else :dark="isDark">
-      <v-expansion-panel>
-        <v-expansion-panel-header>
-        SideBar
-      </v-expansion-panel-header>
-      <v-expansion-panel-content>
-        <v-card
-    :dark="isDark"
-      class="pa-12"
-      flat
-    >
-      <v-card
-        elevation="12"
-        width="256"
-      >
-        <v-navigation-drawer
-          floating
-          permanent
-        >
-          <v-list
-            dense
-            rounded
-            class="text-center"
-          >
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-  
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-      </v-card>
-    </v-card>
-      </v-expansion-panel-content>
-      </v-expansion-panel>
+    <v-expansion-panels style="position: fixed" v-else :dark="isDark">
+        <v-expansion-panel>
+            <v-expansion-panel-header> SideBar </v-expansion-panel-header>
+            <v-expansion-panel-content>
+                <v-card :dark="isDark" class="pa-12" flat>
+                    <v-card elevation="12" width="256">
+                        <v-navigation-drawer floating permanent>
+                            <v-list dense rounded class="text-center">
+                                <v-list-item
+                                    v-for="item in items"
+                                    :key="item.title"
+                                    link
+                                >
+                                    <v-list-item-icon>
+                                        <v-icon>{{ item.icon }}</v-icon>
+                                    </v-list-item-icon>
+
+                                    <v-list-item-content>
+                                        <v-list-item-title>{{
+                                            item.title
+                                        }}</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </v-list>
+                        </v-navigation-drawer>
+                    </v-card>
+                </v-card>
+            </v-expansion-panel-content>
+        </v-expansion-panel>
     </v-expansion-panels>
-  </template>
+</template>
 
 <script setup>
 import { useDark, useToggle } from "@vueuse/core";
@@ -126,21 +111,40 @@ const toggleDark = useToggle(isDark);
 </script>
 
 <script>
-  export default {
-    data () {
-      return {
-        items: [
-          { title: 'Home', icon: 'mdi-view-dashboard' },
-          { title: 'Chats', icon: 'mdi-forum' },
-          { title: 'Friends', icon: 'mdi-forum' },
-          { title: 'About3', icon: 'mdi-forum' },
-          { title: 'About4', icon: 'mdi-forum' },
-          { title: 'About5', icon: 'mdi-forum' },
-          { title: 'About6', icon: 'mdi-forum' },
-          // { title: 'About7', icon: 'mdi-forum' },
-          // { title: 'About8', icon: 'mdi-forum' },
-        ],
-      }
+import MyCustomLink from "@/Jetstream/MyCustomLink";
+
+export default {
+    components: {
+      MyCustomLink,
     },
-  }
+
+    data() {
+        return {
+            items: [
+                {
+                    title: "Home",
+                    icon: "mdi-view-dashboard-outline",
+                    route: "",
+                },
+                { title: "pageOne", icon: "mdi-numeric-1", route: ".pageOne" },
+                { title: "pageTwo", icon: "mdi-numeric-2", route: ".pageTwo" },
+                { title: "pageThree", icon: "mdi-numeric-3", route: ".pageThree" },
+                { title: "pageFour", icon: "mdi-numeric-4", route: ".pageOne" },
+                { title: "pageFive", icon: "mdi-numeric-5", route: ".pageOne" },
+                { title: "pageSix", icon: "mdi-numeric-6", route: ".pageOne" },
+                { title: "paeSeven", icon: "mdi-numeric-7", route: ".pageOne" },
+                // { title: 'About8', icon: 'mdi-forum' },
+            ],
+        };
+    },
+
+    methods: {
+        select: function (path) {
+            if (path.extension !== "") {
+                window.location.href = path.url + path.extension;
+            }
+            window.location.href = path.url;
+        },
+    },
+};
 </script>

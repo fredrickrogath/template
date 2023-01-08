@@ -16,24 +16,12 @@
                 <!-- md 2 inaipa sidebar area besides the main content area -->
                 <side-bar></side-bar>
             </v-col>
-            <v-col
-                sm="9"
-                :md="contentFullWidthWhenSideBarHidesComputed"
-                offset-sm="7"
-            >
+            
+            <!-- MY PAGES -->
 
-            <post-card></post-card>
-                <!-- md 10 inaipa main content area besides the sidebar area -->
-                <!-- <div class="py-0">
-                    <div v-if="showSpinner" class="text-center py-2">
-                        <v-progress-circular
-                            class="dark:text-white text-purple-500"
-                            :size="40"
-                            indeterminate
-                        ></v-progress-circular>
-                    </div>
-                </div> -->
-            </v-col>
+            <page-one></page-one>
+                
+            
         </v-row>
     </app-layout>
 </template>
@@ -46,25 +34,32 @@ const isDark = useDark();
 </script>
 
 <script>
-import gsap from "gsap";
+// import gsap from "gsap";
 import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";
 import SideBar from "./Components/SideBar.vue";
 
-import PostCard from "./Components/PostCard.vue";
+// import PostCard from "./Components/PostCard.vue";
+// import Tables from './Components/Tables.vue';
+
+//PAGES
+
+import PageOne from './MiniPages/PageOne.vue';
 
 export default {
     components: {
         AppLayout,
         Welcome,
-        PostCard,
         SideBar,
+        
+        // MY PAGES
+        PageOne,
     },
 
     data() {
         return {
-    
-            contentFullWidthWhenSideBarHides: 10,
+            page: 'dashboard',
+
             contentForCardsWhenSideBarHides: 4,
             showSideBarBeforeSrollDown: true,
             dynamicColForSideBar: 2,
@@ -81,12 +76,6 @@ export default {
 
         dynamicColForSideBarComputed() {
             return this.dynamicColForSideBar;
-        },
-        contentFullWidthWhenSideBarHidesComputed() {
-            return this.contentFullWidthWhenSideBarHides;
-        },
-        contentNoPaddingWhenSideBarHidesComputed() {
-            return this.contentNoPaddingWhenSideBarHides;
         },
     },
 

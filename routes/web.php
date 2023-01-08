@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Models\Post;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +29,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard',[
         'posts' => Post::all(),
+        'page'=> 'dashboard',
     ]);
 })->name('dashboard');
 
@@ -46,49 +47,71 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/posts', function () {
 
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
+    // config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
 
-    Route::group(['prefix' => 'super_admin', 'middleware' => 'is_super_admin', 'as' => 'admin.super.'], function () {
-        // Dashboard for super admini
-        Route::get('/dashboard', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'index'])->name('dashboard');
+    // Route::group(['prefix' => 'super_admin', 'middleware' => 'is_super_admin', 'as' => 'admin.super.'], function () {
+    //     // Dashboard for super admini
+    //     Route::get('/dashboard', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'index'])->name('dashboard');
 
-        Route::get('/management', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'management'])->name('management');
+    //     Route::get('/management', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'management'])->name('management');
 
-        Route::post('/addHospitalAdministrator', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'addHospitalAdministrator'])->name('addHospitalAdministrator');
+    //     Route::post('/addHospitalAdministrator', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'addHospitalAdministrator'])->name('addHospitalAdministrator');
 
-        Route::post('/addDoctor', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'addDoctor'])->name('addDoctor');
+    //     Route::post('/addDoctor', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'addDoctor'])->name('addDoctor');
 
-        Route::post('/addPatient', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'addPatient'])->name('addPatient');
+    //     Route::post('/addPatient', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'addPatient'])->name('addPatient');
 
-        Route::post('/editHospitalAdministrator', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'editHospitalAdministrator'])->name('editHospitalAdministrator');
+    //     Route::post('/editHospitalAdministrator', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'editHospitalAdministrator'])->name('editHospitalAdministrator');
 
-        Route::post('/editDoctor', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'editDoctor'])->name('addDoctor');
+    //     Route::post('/editDoctor', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'editDoctor'])->name('addDoctor');
 
-        Route::post('/editPatient', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'editPatient'])->name('editPatient');
+    //     Route::post('/editPatient', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'editPatient'])->name('editPatient');
 
-        Route::post('/deleteHospitalAdministrator', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'deleteHospitalAdministrator'])->name('deleteHospitalAdministrator');
+    //     Route::post('/deleteHospitalAdministrator', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'deleteHospitalAdministrator'])->name('deleteHospitalAdministrator');
 
-        Route::post('/deleteDoctor', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'deleteDoctor'])->name('deleteDoctor');
+    //     Route::post('/deleteDoctor', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'deleteDoctor'])->name('deleteDoctor');
 
-        Route::post('/deletePatient', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'deletePatient'])->name('deletePatient');
+    //     Route::post('/deletePatient', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'deletePatient'])->name('deletePatient');
 
-        Route::get('/hospitalAdministrators', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'hospitalAdministrators'])->name('hospitalAdministrators');
+    //     Route::get('/hospitalAdministrators', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'hospitalAdministrators'])->name('hospitalAdministrators');
 
-        Route::get('/hospitalDoctors', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'hospitalDoctors'])->name('hospitalDoctors');
+    //     Route::get('/hospitalDoctors', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'hospitalDoctors'])->name('hospitalDoctors');
 
-        Route::get('/hospitalPatients', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'hospitalPatients'])->name('hospitalPatients');
+    //     Route::get('/hospitalPatients', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'hospitalPatients'])->name('hospitalPatients');
 
-        Route::get('/searchHospitalAdministrators', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'searchHospitalAdministrators'])->name('searchHospitalAdministrators');
-    });
+    //     Route::get('/searchHospitalAdministrators', [\App\Http\Controllers\SuperAdmin\TaskController::class, 'searchHospitalAdministrators'])->name('searchHospitalAdministrators');
+    // });
 
-    Route::group(['prefix' => 'hospital_admin', 'middleware' => 'is_hospital_admin', 'as' => 'admin.hospital.'], function () {
-        Route::get('/dashboard', [\App\Http\Controllers\HospitalAdmin\TaskController::class, 'index'])->name('dashboard');
+    Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+        //Page one
+        Route::get('/pageOne', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageOne');
+
+        //Page two
+        Route::get('/pageTwo', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageTwo');
+
+        //Page three
+        Route::get('/pageThree', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageThree');
     });
 
     Route::group(['prefix' => 'tables', 'as' => 'tables.'], function () {
-        Route::get('/', [\App\Http\Controllers\TableController::class, 'show'])->name('show');
+        Route::get('/show', [\App\Http\Controllers\TableController::class, 'show'])->name('show');
         // Route::get('/management', [\App\Http\Controllers\Doctor\TaskController::class, 'index'])->name('management');
 
         // Route::get('/dashboard', [\App\Http\Controllers\Doctor\TaskController::class, 'index'])->name('dashboard');

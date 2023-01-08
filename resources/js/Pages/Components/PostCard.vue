@@ -1,16 +1,22 @@
 <template>
-    <div>
+        <v-col
+                sm="9"
+                :md="contentFullWidthWhenSideBarHidesComputed"
+                offset-sm="7"
+            >
         <div
             class="mx-auto sm:px-6 lg:px-8"
             :class="contentNoPaddingWhenSideBarHides"
         >
-            <div class="overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="overflow-hidden sm:rounded-lg">
                 <!-- <welcome /> -->
+                <!-- <v-row>
+                    <div class="pt-16 sm:pt-4">
+                        heloooooooooooooooooooo
+                    </div>
+                </v-row> -->
                 <v-row>
                     <v-col>
-                        <v-row>
-                            helloooooooooooooooooooooooooooooooooooooooooooooooo
-                        </v-row>
                         <v-row>
                             <v-col
                                 :sm="colDivisionCountComputed"
@@ -152,9 +158,8 @@
                 indeterminate
             ></v-progress-circular>
         </div>
-    </div>
+    </v-col>
 </template>
-
 
 <script setup>
 import { useDark, useToggle } from "@vueuse/core";
@@ -163,9 +168,12 @@ const isDark = useDark();
 // const toggleDark = useToggle(isDark);
 </script>
 
-
 <script>
+import HeatMapFromApexCharts from "./Charts/ApexCharts/HeatMap.vue";
 export default {
+    components: {
+        HeatMap: HeatMapFromApexCharts,
+    },
     //   inject:['switchToComments'],
     filters: {
         //For filter long sentences into a limited number of characters
@@ -215,6 +223,7 @@ export default {
 
     data() {
         return {
+            contentFullWidthWhenSideBarHides: 10,
             contentNoPaddingWhenSideBarHides: "max-w-7xl",
             optionsAreVisible: false,
             colDivisionCount: 4, //4 = 3 divisions , 6 = 2 divisions
@@ -267,7 +276,6 @@ export default {
         hideTopBar() {
             this.$store.dispatch("hideTopBar");
         },
-
     },
 
     computed: {
@@ -278,7 +286,12 @@ export default {
         colDivisionCountComputed() {
             return this.colDivisionCount;
         },
-    }
+
+        contentFullWidthWhenSideBarHidesComputed() {
+            return this.contentFullWidthWhenSideBarHides;
+        },
+        
+    },
 };
 </script>
 

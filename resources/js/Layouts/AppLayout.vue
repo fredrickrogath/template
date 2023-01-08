@@ -26,13 +26,13 @@
                             >
                                 <jet-nav-link
                                     :href="route('dashboard')"
-                                    :active="route().current('dashboard')"
+                                    :active="route().current('dashboard') || route().current('dashboard.*')"
                                 >
                                     Dashboard
                                 </jet-nav-link>
                             </div>
 
-                            <div
+                            <!-- <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                             >
                                 <jet-nav-link
@@ -41,9 +41,9 @@
                                 >
                                     Tables
                                 </jet-nav-link>
-                            </div>
+                            </div> -->
 
-                            <div
+                            <!-- <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                             >
                                 <jet-nav-link
@@ -52,7 +52,7 @@
                                 >
                                     Dashboard
                                 </jet-nav-link>
-                            </div>
+                            </div> -->
 
                             <div  class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <!-- Dark mode btn -->
