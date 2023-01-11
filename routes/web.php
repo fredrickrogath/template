@@ -50,6 +50,9 @@ Route::middleware([
     // config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('storagee/', function($fileName){
+        return Storage::disk('public')->url('storage/systemFiles/images/1.jpg');
+    });
 
     // Route::group(['prefix' => 'super_admin', 'middleware' => 'is_super_admin', 'as' => 'admin.super.'], function () {
     //     // Dashboard for super admini

@@ -1,10 +1,10 @@
 <template>
-    <v-col>
-        <v-row>
-            <v-col sm="4" md="6">
-                <v-card flat :dark="isDark">
-                    <v-card elevation="12" data-app>
-                        <!-- <v-card-title>
+    <!-- <v-col>
+        <v-row> -->
+    <v-col sm="12" md="12">
+        <v-card flat :dark="isDark">
+            <v-card elevation="12" data-app>
+                <!-- <v-card-title>
                             Nutrition
                             <v-spacer></v-spacer>
                             <v-text-field
@@ -15,27 +15,28 @@
                                 hide-details
                             ></v-text-field>
                         </v-card-title> -->
-                        <!-- {{ $page.props.posts }} -->
-                        <v-data-table
-                            :headers="headers"
-                            :items="posts"
-                            :search="search"
-                            dense
-                        >
-                            <template v-slot:item.post_url="{ item }">
-                                <v-avatar size="25">
-                                    <img
-                                        :src="item.post_url"
-                                        :alt="item.id"
-                                    />
-                                </v-avatar>
-                            </template>
-                        </v-data-table>
-                    </v-card>
-                </v-card>
-            </v-col>
-        </v-row>
+                <!-- {{ $page.props.posts }} -->
+                <v-data-table
+                    mobile-breakpoint="0"
+                    :headers="headers"
+                    :items="posts"
+                    :search="search"
+                    dense
+                >
+                    <template v-slot:item.post_url="{ item }">
+                        <v-avatar size="25">
+                            <img
+                                :src="storagePath + item.post_url"
+                                :alt="item.id"
+                            />
+                        </v-avatar>
+                    </template>
+                </v-data-table>
+            </v-card>
+        </v-card>
     </v-col>
+    <!-- </v-row>
+    </v-col> -->
 </template>
 
 <script setup>
@@ -50,6 +51,7 @@ export default {
     data() {
         return {
             contentFullWidthWhenSideBarHides: 10,
+            storagePath: window.location.origin + "/storage/systemFiles/",
 
             search: "",
             headers: [
@@ -60,10 +62,10 @@ export default {
                     value: "id",
                 },
                 { text: "Type", value: "post_type" },
-                { text: "Image", value: "post_url", align: "center",},
+                { text: "Image", value: "post_url", align: "center" },
                 { text: "User", value: "user_id" },
                 { text: "Created", value: "created_at" },
-                
+
                 // { text: "Iron (%)", value: "iron" },
             ],
             posts: this.$page.props.posts,

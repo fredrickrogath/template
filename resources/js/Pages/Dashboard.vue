@@ -18,8 +18,9 @@
             </v-col>
             
             <!-- MY PAGES -->
-
-            <page-one></page-one>
+            <home-page v-if="route().current('dashboard')"></home-page>
+            <page-one v-if="route().current('dashboard.pageOne')"></page-one>
+            <page-two v-if="route().current('dashboard.pageTwo')"></page-two>
                 
             
         </v-row>
@@ -44,7 +45,9 @@ import SideBar from "./Components/SideBar.vue";
 
 //PAGES
 
+import HomePage from './MiniPages/HomePage.vue';
 import PageOne from './MiniPages/PageOne.vue';
+import PageTwo from './MiniPages/PageTwo.vue';
 
 export default {
     components: {
@@ -53,7 +56,9 @@ export default {
         SideBar,
         
         // MY PAGES
+        HomePage,
         PageOne,
+        PageTwo,
     },
 
     data() {

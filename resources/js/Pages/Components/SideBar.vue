@@ -17,20 +17,28 @@
                         class="border-r-4 border-indigo-500"
                         :class="
                             route().current($page.props.page + item.route)
-                                ? 'bg-indigo-100 dark:bg-gray-700'
-                                : ''
+                                ? 'bg-indigo-100 dark:bg-gray-900'
+                                : 'bg-gray-50 dark:bg-gray-900'
                         "
+                        :style="[
+                            isDark &&
+                            route().current($page.props.page + item.route)
+                                ? { 'background-color': '#6366F1' }
+                                : { background: '' },
+                        ]"
                     >
                         <my-custom-link
                             :href="route($page.props.page + item.route)"
-                            :active="route().current($page.props.page + item.route)"
+                            :active="
+                                route().current($page.props.page + item.route)
+                            "
                         >
                             <v-list-item-icon>
                                 <v-icon>{{ item.icon }}</v-icon>
                             </v-list-item-icon>
 
                             <v-list-item-content>
-                                <v-list-item-title>{{
+                                <v-list-item-title class="py-1 font-bold">{{
                                     item.title
                                 }}</v-list-item-title>
                             </v-list-item-content>
@@ -53,8 +61,15 @@
                         class="border-r-4 border-indigo-500"
                         :class="
                             route().current($page.props.page + item.route)
-                                ? 'bg-indigo-100 dark:bg-gray-700 border-b-1 border-indigo-400'
-                                : '' "
+                                ? 'bg-indigo-100 dark:bg-gray-800'
+                                : 'bg-gray-50 dark:bg-gray-900'
+                        "
+                        :style="[
+                            isDark &&
+                            !route().current($page.props.page + item.route)
+                                ? { 'background-color': '#1e1e1e' }
+                                : { background: '' },
+                        ]"
                     >
                         <v-list-item-icon>
                             <v-icon>{{ item.icon }}</v-icon>
@@ -89,7 +104,7 @@
                                     </v-list-item-icon>
 
                                     <v-list-item-content>
-                                        <v-list-item-title>{{
+                                        <v-list-item-title class="font-bold">{{
                                             item.title
                                         }}</v-list-item-title>
                                     </v-list-item-content>
@@ -115,7 +130,7 @@ import MyCustomLink from "@/Jetstream/MyCustomLink";
 
 export default {
     components: {
-      MyCustomLink,
+        MyCustomLink,
     },
 
     data() {
@@ -128,11 +143,19 @@ export default {
                 },
                 { title: "pageOne", icon: "mdi-numeric-1", route: ".pageOne" },
                 { title: "pageTwo", icon: "mdi-numeric-2", route: ".pageTwo" },
-                { title: "pageThree", icon: "mdi-numeric-3", route: ".pageThree" },
+                {
+                    title: "pageThree",
+                    icon: "mdi-numeric-3",
+                    route: ".pageThree",
+                },
                 { title: "pageFour", icon: "mdi-numeric-4", route: ".pageOne" },
                 { title: "pageFive", icon: "mdi-numeric-5", route: ".pageOne" },
                 { title: "pageSix", icon: "mdi-numeric-6", route: ".pageOne" },
-                { title: "paeSeven", icon: "mdi-numeric-7", route: ".pageOne" },
+                {
+                    title: "pageSeven",
+                    icon: "mdi-numeric-7",
+                    route: ".pageOne",
+                },
                 // { title: 'About8', icon: 'mdi-forum' },
             ],
         };

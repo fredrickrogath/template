@@ -1,20 +1,23 @@
 <template>
   <v-card
-    class="text-center"
-    :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#6366F1'}]"
+    class="text-center col-12"
+    :class="isDark ? '' : 'bg-gradient-to-tr from-blue-500 to-indigo-900'"
+    :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': ''}]"
+    outlined
   >
     <v-card-text>
       <v-sheet color="rgba(0, 0, 0, .12)">
-        <v-sparkline
+        <v-sparkline label-size="20" auto-draw
           :value="value"
           color="rgba(255, 255, 255, .7)"
-          height="100"
-          padding="24"
+          height="130"
+          width="500" show-labels
+          padding="44" line-width="4"
           stroke-linecap="round"
           smooth
         >
           <template v-slot:label="item">
-            ${{ item.value }}
+            Tsh {{ item.value }}
           </template>
         </v-sparkline>
       </v-sheet>
@@ -50,9 +53,9 @@
         446,
         675,
         510,
-        590,
-        610,
-        760,
+        // 590,
+        // 610,
+        // 760,
       ],
     }),
   }

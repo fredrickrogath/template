@@ -1,33 +1,108 @@
 <template>
-        <v-col>
-                <div class="flex bg-red-800">
-                    <div class="col-6">
-                        <spark-line></spark-line>
-                    </div>
-                    <div class="bg-green-800 col-6">
-                        hello
-                    </div>
-                    <!-- <spark-line></spark-line> -->
-                    <!-- <spark-line></spark-line> -->
-                </div>
-            <div>
-                <statistic-cards></statistic-cards>
+  <!-- <v-row>
+  <v-col cols="12" md="6" class="py-0">
+    <v-row :column="$vuetify.breakpoint.mdAndDown">
+      <v-col cols="12" lg="6" style="border: 1px solid red;">1</v-col>
+      <v-col cols="12" lg="6" style="border: 1px solid red;">2</v-col>
+    </v-row>
+  </v-col>
+  <v-col cols="12" md="6" style="border: 1px solid red;">3</v-col>
+</v-row> -->
+
+    <v-col sm="9" md="10" offset-sm="7" cols="12">
+        <div class="mx-auto sm:px-6 lg:px-0 max-w-7xl">
+            <div class="overflow-hidden sm:rounded-lg">
+                <v-row>
+                    <v-col>
+                        <v-row>
+                            <v-col sm="12" md="4" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <spark-line></spark-line>
+                                </v-card>
+                            </v-col>
+
+                            <v-col sm="12" md="4" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <donghurt-image></donghurt-image>
+                                </v-card>
+                            </v-col>
+
+                            <v-col sm="12" md="4" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <statistic-cards></statistic-cards>
+                                    <div class="my-1 bg-indigo-500 h-1"></div>
+                                    <statistic-cards></statistic-cards>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+
+                        <v-row>
+                            <v-col sm="12" md="4" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <table-data></table-data>
+                                </v-card>
+                            </v-col>
+
+                            <v-col sm="12" md="4" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <table-data></table-data>
+                                </v-card>
+                            </v-col>
+
+                            <v-col sm="12" md="4" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <table-data></table-data>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+
+                        <v-row>
+                            <v-col sm="12" md="6" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <table-data></table-data>
+                                </v-card>
+                            </v-col>
+
+                            <v-col sm="12" md="6" offset-sm="7">
+                                <v-card outlined :dark="isDark">
+                                    <table-data></table-data>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+
+                        <v-row>
+                            <table-data></table-data>
+                        </v-row>
+                    </v-col>
+                </v-row>
             </div>
-            <div>
-                <table-data></table-data>
-            </div>
-        </v-col>
+        </div>
+    </v-col>
 </template>
+
+<script setup>
+import { useDark, useToggle } from "@vueuse/core";
+const isDark = useDark();
+</script>
 
 <script>
 import StatisticCards from "../Components/StatisticCards.vue";
 import TableData from "../Components/Tables.vue";
 import SparkLine from "../Components/SparkLine.vue";
+import DonghurtImage from "../Components/Charts/ApexCharts/DonghurtImage.vue";
 
 export default {
-    components: { StatisticCards, TableData, SparkLine },
+    components: { StatisticCards, TableData, SparkLine, DonghurtImage },
+
+    filters: {},
+
+    mounted() {},
+
     data() {
         return {};
     },
+    methods: {},
+
+    computed: {},
 };
 </script>

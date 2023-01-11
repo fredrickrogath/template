@@ -32,7 +32,7 @@
                                 </jet-nav-link>
                             </div>
 
-                            <!-- <div
+                            <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                             >
                                 <jet-nav-link
@@ -41,7 +41,7 @@
                                 >
                                     Tables
                                 </jet-nav-link>
-                            </div> -->
+                            </div>
 
                             <!-- <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
@@ -620,7 +620,7 @@
             </header> -->
 
             <!-- Page Content -->
-            <main  class="py-1">
+            <main  class="py-0">
                 <slot></slot>
             </main>
 
