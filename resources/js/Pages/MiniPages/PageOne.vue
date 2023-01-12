@@ -17,8 +17,8 @@
                         <v-row>
                             <v-col sm="12" md="4" offset-sm="7">
                                 <v-card outlined :dark="isDark">
-                                    <!-- <spark-line></spark-line> -->
-                                    <pie-chart3-d></pie-chart3-d>
+                                    <spark-line></spark-line>
+                                    <!-- <pie-chart3-d></pie-chart3-d> -->
                                 </v-card>
                             </v-col>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="component-wrapper">
+    <div class="component-wrapper py-6">
         <GChart type="PieChart" :data="chartData" :options="chartOptions" />
     </div>
 </template>
@@ -45,6 +45,7 @@ export default {
                     title: "Company Performance",
                     subtitle: "Sales, Expenses, and Profit: 2014-2017",
                 },
+                chartArea: {width: 400, height: 300, backgroundColor: {fill: 'transparent'}},
                 is3D: true,
             },
         };

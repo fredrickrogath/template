@@ -48,7 +48,7 @@
             </v-navigation-drawer>
         </v-card>
 
-        <div class="h-11"></div>
+        <!-- <div class="h-11"></div>
 
         <v-card elevation="12" width="256">
             <v-navigation-drawer floating permanent>
@@ -83,7 +83,7 @@
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
-        </v-card>
+        </v-card> -->
     </v-card>
 
     <v-expansion-panels style="position: fixed" v-else :dark="isDark">
