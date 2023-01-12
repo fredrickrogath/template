@@ -111,6 +111,38 @@ Route::middleware([
                 'page'=> 'dashboard',
             ]);
         })->name('pageThree');
+
+        //Page four
+        Route::get('/pageFour', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageFour');
+
+        //Page five
+        Route::get('/pageFive', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageFive');
+
+        //Page six
+        Route::get('/pageSix', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageSix');
+
+        //Page seven
+        Route::get('/pageSeven', function () {
+            return Inertia::render('Dashboard',[
+                'posts' => Post::all(),
+                'page'=> 'dashboard',
+            ]);
+        })->name('pageSeven');
     });
 
     Route::group(['prefix' => 'tables', 'as' => 'tables.'], function () {

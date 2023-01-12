@@ -35,6 +35,24 @@ const isDark = useDark();
 </script>
 
 <script>
+//end of inertiajs progress
+import { InertiaProgress } from '@inertiajs/progress'
+InertiaProgress.init({
+  // The delay after which the progress bar will
+  // appear during navigation, in milliseconds.
+  delay: 250,
+
+  // The color of the progress bar.
+  color: '#6366F1',
+
+  // Whether to include the default NProgress styles.
+  includeCSS: true,
+
+  // Whether the NProgress spinner will be shown.
+  showSpinner: true,
+})
+//end of inertiajs progress
+
 // import gsap from "gsap";
 import AppLayout from "@/Layouts/AppLayout";
 import Welcome from "@/Jetstream/Welcome";

@@ -17,7 +17,8 @@
                         <v-row>
                             <v-col sm="12" md="4" offset-sm="7">
                                 <v-card outlined :dark="isDark">
-                                    <spark-line></spark-line>
+                                    <!-- <spark-line></spark-line> -->
+                                    <pie-chart3-d></pie-chart3-d>
                                 </v-card>
                             </v-col>
 
@@ -91,8 +92,10 @@ import TableData from "../Components/Tables.vue";
 import SparkLine from "../Components/SparkLine.vue";
 import DonghurtImage from "../Components/Charts/ApexCharts/DonghurtImage.vue";
 
+import PieChart3D from '../Components/Charts/GoogleCharts/PieChart3D.vue';
+
 export default {
-    components: { StatisticCards, TableData, SparkLine, DonghurtImage },
+    components: { StatisticCards, TableData, SparkLine, DonghurtImage, PieChart3D },
 
     filters: {},
 
