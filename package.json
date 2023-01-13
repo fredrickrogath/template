@@ -31,6 +31,8 @@
         "@vueuse/core": "^9.9.0",
         "apexcharts": "^3.36.3",
         "gsap": "^3.11.4",
+        "laravel-echo": "^1.11.2",
+        "pusher-js": "^7.0.3",
         "vue-apexcharts": "^1.6.2",
         "vue-google-charts": "^1.1.0",
         "vue2-perfect-scrollbar": "^1.5.56",

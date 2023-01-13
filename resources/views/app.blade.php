@@ -19,5 +19,12 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+
+        <script>
+            // Echo.channel('EventTriggered')
+            // .listen('NewPostPublished' , (e) => {
+            //     console.log('message')
+            // })
+        </script>
     </body>
 </html>

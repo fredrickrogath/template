@@ -16,6 +16,10 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/trigger/{data}', function ($data) {
+    echo "<p>You have sent $data</p>";
+    event(new App\Events\NewPostPublished($data));
+});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
