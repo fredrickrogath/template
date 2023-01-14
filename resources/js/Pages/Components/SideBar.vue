@@ -18,13 +18,15 @@
                         :class="
                             route().current($page.props.page + item.route)
                                 ? 'bg-indigo-100 dark:bg-gray-900'
-                                : 'bg-gray-50 dark:bg-gray-900'
+                                : 'bg-gray-50 dark:bg-slate-900'
                         "
                         :style="[
                             isDark &&
                             route().current($page.props.page + item.route)
                                 ? { 'background-color': '#6366F1' }
-                                : { background: '' },
+                                : isDark
+                                ? { background: '#1e1e1e' }
+                                : {},
                         ]"
                     >
                         <my-custom-link
@@ -48,7 +50,7 @@
             </v-navigation-drawer>
         </v-card>
 
-        <!-- <div class="h-11"></div>
+        <div class="h-11"></div>
 
         <v-card elevation="12" width="256">
             <v-navigation-drawer floating permanent>
@@ -61,14 +63,16 @@
                         class="border-r-4 border-indigo-500"
                         :class="
                             route().current($page.props.page + item.route)
-                                ? 'bg-indigo-100 dark:bg-gray-800'
-                                : 'bg-gray-50 dark:bg-gray-900'
+                                ? 'bg-indigo-100 dark:bg-gray-900'
+                                : 'bg-gray-50 dark:bg-slate-900'
                         "
                         :style="[
                             isDark &&
-                            !route().current($page.props.page + item.route)
-                                ? { 'background-color': '#1e1e1e' }
-                                : { background: '' },
+                            route().current($page.props.page + item.route)
+                                ? { 'background-color': '#6366F1' }
+                                : isDark
+                                ? { background: '#1e1e1e' }
+                                : {},
                         ]"
                     >
                         <v-list-item-icon>
@@ -83,7 +87,7 @@
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
-        </v-card> -->
+        </v-card>
     </v-card>
 
     <v-expansion-panels style="position: fixed" v-else :dark="isDark">
@@ -148,8 +152,16 @@ export default {
                     icon: "mdi-numeric-3",
                     route: ".pageThree",
                 },
-                { title: "pageFour", icon: "mdi-numeric-4", route: ".pageFour" },
-                { title: "pageFive", icon: "mdi-numeric-5", route: ".pageFive" },
+                {
+                    title: "pageFour",
+                    icon: "mdi-numeric-4",
+                    route: ".pageFour",
+                },
+                {
+                    title: "pageFive",
+                    icon: "mdi-numeric-5",
+                    route: ".pageFive",
+                },
                 { title: "pageSix", icon: "mdi-numeric-6", route: ".pageSix" },
                 {
                     title: "pageSeven",
