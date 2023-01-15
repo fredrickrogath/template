@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div id="app">
         <lottie :options="defaultOptions" :height="400" :width="400" v-on:animCreated="handleAnimation"/>
         <div>
@@ -49,4 +49,4 @@
       }
     }
   }
-</script>
+</script> -->

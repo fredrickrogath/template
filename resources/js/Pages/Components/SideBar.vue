@@ -11,18 +11,17 @@
             <v-navigation-drawer floating permanent>
                 <v-list dense rounded class="text-center">
                     <v-list-item
-                        v-for="(item, i) in items"
-                        :key="item.title"
+                        v-for="(myRoute, i) in routes"
+                        :key="myRoute.title"
                         link
                         class="border-r-4 border-indigo-500"
                         :class="
-                            route().current($page.props.page + item.route)
+                            route().current(myRoute.route)
                                 ? 'bg-indigo-100 dark:bg-gray-900'
                                 : 'bg-gray-50 dark:bg-slate-900'
                         "
                         :style="[
-                            isDark &&
-                            route().current($page.props.page + item.route)
+                            isDark && route().current(myRoute.route)
                                 ? { 'background-color': '#6366F1' }
                                 : isDark
                                 ? { background: '#1e1e1e' }
@@ -30,18 +29,16 @@
                         ]"
                     >
                         <my-custom-link
-                            :href="route($page.props.page + item.route)"
-                            :active="
-                                route().current($page.props.page + item.route)
-                            "
+                            :href="route(myRoute.route)"
+                            :active="route().current(myRoute.route)"
                         >
                             <v-list-item-icon>
-                                <v-icon>{{ item.icon }}</v-icon>
+                                <v-icon>{{ myRoute.icon }}</v-icon>
                             </v-list-item-icon>
 
                             <v-list-item-content>
                                 <v-list-item-title class="py-1 font-bold">{{
-                                    item.title
+                                    myRoute.title
                                 }}</v-list-item-title>
                             </v-list-item-content>
                         </my-custom-link>
@@ -50,47 +47,14 @@
             </v-navigation-drawer>
         </v-card>
 
-        <div class="h-11"></div>
+        <div class="h-2"></div>
 
-        <v-card elevation="12" width="256">
-            <v-navigation-drawer floating permanent>
-                <v-list dense rounded class="text-center">
-                    <v-list-item
-                        v-for="(item, i) in items"
-                        :key="item.title"
-                        v-if="i < 2"
-                        link
-                        class="border-r-4 border-indigo-500"
-                        :class="
-                            route().current($page.props.page + item.route)
-                                ? 'bg-indigo-100 dark:bg-gray-900'
-                                : 'bg-gray-50 dark:bg-slate-900'
-                        "
-                        :style="[
-                            isDark &&
-                            route().current($page.props.page + item.route)
-                                ? { 'background-color': '#6366F1' }
-                                : isDark
-                                ? { background: '#1e1e1e' }
-                                : {},
-                        ]"
-                    >
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
-
-                        <v-list-item-content>
-                            <v-list-item-title>{{
-                                item.title
-                            }}</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-navigation-drawer>
+        <v-card elevation="12">
+            <pie-chart3-d></pie-chart3-d>
         </v-card>
     </v-card>
 
-    <v-expansion-panels style="position: fixed" v-else :dark="isDark">
+    <!-- <v-expansion-panels style="position: fixed" v-else :dark="isDark">
         <v-expansion-panel>
             <v-expansion-panel-header> SideBar </v-expansion-panel-header>
             <v-expansion-panel-content>
@@ -119,7 +83,7 @@
                 </v-card>
             </v-expansion-panel-content>
         </v-expansion-panel>
-    </v-expansion-panels>
+    </v-expansion-panels> -->
 </template>
 
 <script setup>
@@ -131,55 +95,39 @@ const toggleDark = useToggle(isDark);
 
 <script>
 import MyCustomLink from "@/Jetstream/MyCustomLink";
+import PieChart3D from '../Components/Charts/GoogleCharts/PieChart3D.vue';
 
 export default {
     components: {
         MyCustomLink,
+        PieChart3D,
+    },
+
+    mounted() {
+        this.initializeRoutes();
     },
 
     data() {
         return {
-            items: [
-                {
-                    title: "Home",
-                    icon: "mdi-view-dashboard-outline",
-                    route: "",
-                },
-                { title: "pageOne", icon: "mdi-numeric-1", route: ".pageOne" },
-                { title: "pageTwo", icon: "mdi-numeric-2", route: ".pageTwo" },
-                {
-                    title: "pageThree",
-                    icon: "mdi-numeric-3",
-                    route: ".pageThree",
-                },
-                {
-                    title: "pageFour",
-                    icon: "mdi-numeric-4",
-                    route: ".pageFour",
-                },
-                {
-                    title: "pageFive",
-                    icon: "mdi-numeric-5",
-                    route: ".pageFive",
-                },
-                { title: "pageSix", icon: "mdi-numeric-6", route: ".pageSix" },
-                {
-                    title: "pageSeven",
-                    icon: "mdi-numeric-7",
-                    route: ".pageSeven",
-                },
-                // { title: 'About8', icon: 'mdi-forum' },
-            ],
+            routes: [],
         };
     },
 
     methods: {
-        select: function (path) {
-            if (path.extension !== "") {
-                window.location.href = path.url + path.extension;
-            }
-            window.location.href = path.url;
+        initializeRoutes() {
+            this.$store.getters["getRoutes"].forEach((route) => {
+                this.routes.push(route);
+            });
         },
+
+        // select: function (path) {
+        //     if (path.extension !== "") {
+        //         window.location.href = path.url + path.extension;
+        //     }
+        //     window.location.href = path.url;
+        // },
     },
+
+    computed: {},
 };
 </script>

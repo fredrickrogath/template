@@ -18,9 +18,9 @@
             </v-col>
             
             <!-- MY PAGES -->
-            <home-page v-if="route().current('dashboard')"></home-page>
-            <page-one v-if="route().current('dashboard.pageOne')"></page-one>
-            <page-two v-if="route().current('dashboard.pageTwo')"></page-two>
+            <home-page v-if="route().current('head.dashboard')"></home-page>
+            <page-one v-if="route().current('head.pageOne')"></page-one>
+            <page-two v-if="route().current('head.pageTwo')"></page-two>
                 
             
         </v-row>
@@ -77,6 +77,10 @@ export default {
         HomePage,
         PageOne,
         PageTwo,
+    },
+
+    mounted() {
+        // console.log(this.$page.props.routes);
     },
 
     data() {

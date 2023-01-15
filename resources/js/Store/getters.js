@@ -1,7 +1,12 @@
 export default {
-    showTopBar(state) {
-        return state.showTopBar;
+    getRoutes(state) {
+        //Get routes from the store
+        return state.routes;
     },
+
+    areRoutesLoaded(state){
+        return state.areRoutesLoaded;
+    }
 
     // finalCounter2(_, getters){
     //     // the dash is for the state

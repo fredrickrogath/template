@@ -16,7 +16,7 @@ class PostFactory extends Factory
         return [
             'post_title' => $this->faker->name(),
             'post_type' => 'image',
-            'post_body' => $this->faker->sentence(99),
+            'post_body' => $this->faker->sentence(90),
             'post_url' => 'images/1.jpg',
             'user_id' => '1',
         ];

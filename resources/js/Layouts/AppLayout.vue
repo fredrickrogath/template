@@ -4,16 +4,27 @@
 
         <div
             class="min-h-screen shadow-xl"
-            :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
+            :style="[
+                isDark
+                    ? { 'background-color': '#1e1e1e' }
+                    : { background: '#FFF' },
+            ]"
         >
-            <nav v-if="showTopBarComputed" class="border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50" :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]">
+            <nav
+                class="border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50"
+                :style="[
+                    isDark
+                        ? { 'background-color': '#1e1e1e' }
+                        : { background: '#FFF' },
+                ]"
+            >
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <inertia-link :href="route('dashboard')">
+                                <inertia-link :href="route('head.dashboard')">
                                     <jet-application-mark
                                         class="block h-9 w-auto"
                                     />
@@ -25,14 +36,17 @@
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                             >
                                 <jet-nav-link
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard') || route().current('dashboard.*')"
+                                    :href="route('head.dashboard')"
+                                    :active="
+                                        route().current('head.dashboard') ||
+                                        route().current('head.*')
+                                    "
                                 >
                                     Dashboard
                                 </jet-nav-link>
                             </div>
 
-                            <div
+                            <!-- <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                             >
                                 <jet-nav-link
@@ -41,7 +55,7 @@
                                 >
                                     Tables
                                 </jet-nav-link>
-                            </div>
+                            </div> -->
 
                             <!-- <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
@@ -54,12 +68,18 @@
                                 </jet-nav-link>
                             </div> -->
 
-                            <div  class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div
+                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
+                            >
                                 <!-- Dark mode btn -->
                                 <button
                                     @click="toggleDark()"
                                     class="px-2 py-1 rounded-full text-gray-700 dark:text-gray-400 bg-white dark:bg-transparent"
-                                    :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
+                                    :style="[
+                                        isDark
+                                            ? { 'background-color': '#1e1e1e' }
+                                            : { background: '#FFF' },
+                                    ]"
                                 >
                                     <svg
                                         v-if="isDark"
@@ -261,9 +281,7 @@
                                                 type="button"
                                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-700 dark:text-gray-400 bg-white dark:bg-transparent hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {{
-                                                    $page.props.user.name
-                                                }}
+                                                {{ $page.props.user.name }}
 
                                                 <svg
                                                     class="ml-2 -mr-0.5 h-4 w-4"
@@ -328,7 +346,11 @@
                             <button
                                 @click="toggleDark()"
                                 class="px-2 py-1 rounded-full text-gray-700 dark:text-gray-400 bg-white dark:bg-gray-900"
-                                :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
+                                :style="[
+                                    isDark
+                                        ? { 'background-color': '#1e1e1e' }
+                                        : { background: '#FFF' },
+                                ]"
                             >
                                 <svg
                                     v-if="isDark"
@@ -408,7 +430,11 @@
                     <div
                         v-if="show"
                         class="absolute w-full bg-white dark:bg-gray-900 z-10"
-                        :style="[isDark ? {'background-color': '#1e1e1e'} : {'background': '#FFF'}]"
+                        :style="[
+                            isDark
+                                ? { 'background-color': '#1e1e1e' }
+                                : { background: '#FFF' },
+                        ]"
                     >
                         <div
                             :class="{
@@ -419,30 +445,30 @@
                         >
                             <div class="pt-2 pb-3 space-y-1">
                                 <jet-responsive-nav-link
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard')"
+                                    :href="route('head.dashboard')"
+                                    :active="route().current('home.dashboard')"
                                 >
                                     Dashboard
                                 </jet-responsive-nav-link>
                             </div>
 
-                            <div class="pt-2 pb-3 space-y-1">
+                            <!-- <div class="pt-2 pb-3 space-y-1">
                                 <jet-responsive-nav-link
                                     :href="route('dashboard')"
                                     :active="route().current('dashboard1')"
                                 >
                                     Dashboard
                                 </jet-responsive-nav-link>
-                            </div>
+                            </div> -->
 
-                            <div class="pt-2 pb-3 space-y-1">
+                            <!-- <div class="pt-2 pb-3 space-y-1">
                                 <jet-responsive-nav-link
                                     :href="route('dashboard')"
                                     :active="route().current('dashboard2')"
                                 >
                                     Dashboard
                                 </jet-responsive-nav-link>
-                            </div>
+                            </div> -->
 
                             <!-- Responsive Settings Options -->
                             <div class="pt-4 pb-1 border-t border-gray-200">
@@ -620,7 +646,7 @@
             </header> -->
 
             <!-- Page Content -->
-            <main  class="py-0">
+            <main class="py-0">
                 <slot></slot>
             </main>
 
@@ -656,10 +682,17 @@ export default {
         JetResponsiveNavLink,
     },
 
+    mounted() {
+        if (this.areRoutesLoaded) {
+            this.storeRoutes();
+        }
+    },
+
     data() {
         return {
-            showingNavigationDropdown: false,
             show: false,
+            areRoutesLoaded: false,
+            showingNavigationDropdown: false,
         };
     },
 
@@ -679,13 +712,19 @@ export default {
         logout() {
             this.$inertia.post(route("logout"));
         },
+
+        //Save routes into store
+        storeRoutes() {
+            this.$store.dispatch("areRoutesLoaded");
+            this.$store.dispatch("storeRoutes", this.$page.props.routes);
+        },
     },
 
     computed: {
-        showTopBarComputed(){
-            return this.$store.getters['showTopBar'];
+        showTopBarComputed() {
+            return this.$store.getters["showTopBar"];
         },
-    }
+    },
 };
 </script>
 

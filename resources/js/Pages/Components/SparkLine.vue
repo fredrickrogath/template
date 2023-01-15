@@ -25,7 +25,7 @@
 
     <v-card-text>
       <div class="text-h4 font-weight-thin dark:text-gray-200 text-white">
-        Sales Last 24h
+        Report for the Last 24h
       </div>
     </v-card-text>
 
@@ -35,6 +35,7 @@
       <v-btn
         block
         text
+         @click="tulia"
       >
       <div class="dark:text-gray-200 text-white">
 
@@ -58,6 +59,12 @@
         // 760,
       ],
     }),
+
+    methods: {
+      tulia(){
+        alert('Tulia kwanza acha mbwembwe')
+      }
+    }
   }
 </script>
 

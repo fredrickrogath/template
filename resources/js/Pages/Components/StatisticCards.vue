@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div
+        class="bg-transparent rounded mt-2 mx-2"
+        :class="isDark ? '' : 'border-2 border-sky-500'"
+    >
         <!-- component -->
         <div class="px-0 py-0 mx-auto">
             <div class="flex flex-wrap text-center">
@@ -8,7 +11,7 @@
                         class="flex items-center justify-between py-0 px-3 rounded-lg"
                     >
                         <div class="rounded-lg">
-                            <h4 class="text-gray-900 dark:text-white px-1">
+                            <h4 class="text-gray-200 dark:text-gray-200 px-1">
                                 Last Week Transactions
                             </h4>
                             <!-- <h4 class="text-gray-900 px-1">
@@ -59,7 +62,7 @@ export default {
     components: {},
 
     mounted() {
-        this.number = 300000000
+        this.number = 300000000;
     },
 
     data() {
@@ -71,9 +74,9 @@ export default {
 
     watch: {
         number(n) {
-            gsap.to(this, { duration: 10, tweened: Number(n) || 0})
-        }
-    }
+            gsap.to(this, { duration: 10, tweened: Number(n) || 0 });
+        },
+    },
 };
 </script>
 
