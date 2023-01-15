@@ -23,7 +23,15 @@ use App\Http\Controllers\UserController;
 
 //Add fake users for testing
 Route::get('/add/users', function () {
-    App\Models\User::factory()->count(100)->create();
+    // dd(\App\Models\User::with(['posts' => function($query) {
+    //     // $query->orderBy('id','desc');
+    // }])->get()->first());
+
+    // dd(\App\Models\Post::with(['user' => function($query) {
+    //     // $query->orderBy('id','desc');
+    // }])->get()->first());
+
+    // App\Models\User::factory()->count(100)->create();
 });
 
 Route::get('/', function () {

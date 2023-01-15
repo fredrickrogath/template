@@ -16,4 +16,10 @@ class Post extends Model
         'user_id',
         'post_body',
     ];
+
+    public function user()
+    {
+        // return $this->belongsTo('Model', 'foreign_key', 'owner_key'); 
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
 }

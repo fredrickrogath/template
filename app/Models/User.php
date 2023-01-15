@@ -62,6 +62,17 @@ class User extends Authenticatable
 
 
     /**
+     * User mode lralationships.
+     *
+     */
+
+    public function posts()
+    {
+        return $this->hasMany(\App\Models\Post::class, 'user_id');
+    }
+
+
+    /**
      * User roles.
      *
      */
