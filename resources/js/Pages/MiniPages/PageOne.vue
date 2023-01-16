@@ -109,6 +109,8 @@ import DonghurtImage from "../Components/Charts/ApexCharts/DonghurtImage.vue";
 
 import PieChart3D from "../Components/Charts/GoogleCharts/PieChart3D.vue";
 
+import Money from "../Components/Money.vue";
+
 export default {
     components: {
         StatisticCards,
@@ -116,6 +118,8 @@ export default {
         SparkLine,
         DonghurtImage,
         PieChart3D,
+
+        Money,
     },
 
     filters: {},

@@ -15,6 +15,10 @@ import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
 import store from '@/Store/index';
 
+import money from 'v-money';
+
+import Vue2Filters from 'vue2-filters';
+
 
 // import colors from 'vuetify/lib/util/colors'
 
@@ -24,6 +28,10 @@ Vue.use(PortalVue);
 
 Vue.use(Vuetify);
 Vue.use(PerfectScrollbar);
+Vue.use(money, {precision: 4});
+
+
+Vue.use(Vue2Filters);
 
 const app = document.getElementById("app");
 

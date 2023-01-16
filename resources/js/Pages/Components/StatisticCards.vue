@@ -35,11 +35,11 @@
                             </button>
                         </div>
                         <div
-                            class="bg-gradient-to-tr from-blue-500 to-indigo-900 mx-2 w-28 h-32 sm:h-28 rounded-full shadow-2xl border-white border-dashed border-2 flex justify-center items-center"
+                            class="bg-gradient-to-tr from-blue-500 to-indigo-900 px-4 sm:px-0 w-28 h-28 sm:h-25 rounded-full shadow-2xl border-white border-dashed border-2 flex justify-center items-center"
                         >
                             <div>
                                 <h1 class="text-sm text-white">
-                                    Tsh {{ tweened.toFixed(0) }}
+                                    {{ tweened.toFixed(0) | currency('Tsh', 0) }}
                                 </h1>
                             </div>
                         </div>
@@ -61,8 +61,10 @@ import gsap from "gsap";
 export default {
     components: {},
 
+    filters: {},
+
     mounted() {
-        this.number = 300000000;
+        this.number = 3000;
     },
 
     data() {
@@ -74,7 +76,7 @@ export default {
 
     watch: {
         number(n) {
-            gsap.to(this, { duration: 10, tweened: Number(n) || 0 });
+            gsap.to(this, { duration: 5, tweened: Number(n) || 0 });
         },
     },
 };
