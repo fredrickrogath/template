@@ -39,7 +39,9 @@
                         >
                             <div>
                                 <h1 class="text-sm text-white">
-                                    {{ tweened.toFixed(0) | currency('Tsh', 0) }}
+                                    {{
+                                        tweened.toFixed(0) | currency("Tsh", 0)
+                                    }}
                                 </h1>
                             </div>
                         </div>
@@ -64,7 +66,7 @@ export default {
     filters: {},
 
     mounted() {
-        this.number = 3000;
+        this.number = 300000000;
     },
 
     data() {
