@@ -209,7 +209,7 @@ export default {
                     document.body.scrollHeight &&
                 !this.nextPageLoaded
             ) {
-                console.log("fired");
+                // console.log("fired");
                 this.nextPageLoaded = true;
                 this.showSpinner = true;
                 this.nextPage();
@@ -253,7 +253,7 @@ export default {
 
         //Get the first post with page=1
         getPosts() {
-            console.log("Loading next page");
+            // console.log("Loading next page");
             axios.get("/posts?page=1").then((response) => {
                 this.posts = response.data.data.data;
                 //increament url pages
@@ -262,8 +262,8 @@ export default {
         },
 
         nextPage() {
-            console.log(this.page);
-            console.log("Loading next page");
+            // console.log(this.page);
+            // console.log("Loading next page");
             axios.get("/posts?page=" + this.page).then((response) => {
                 response.data.data.data.forEach((data) => {
                     this.posts.push(data);
