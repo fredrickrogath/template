@@ -1,6 +1,7 @@
 export default {
     //Save routes into the store
     storeRoutes(state, routes){
+        state.routes = [];
         state.routes = routes;
     },
 

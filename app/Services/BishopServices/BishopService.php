@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\BishopServices;
 
-class HeadService
+class BishopService
 {
     public function dashboardData(){
         return [
-            $prefix = 'head',
+            $prefix = 'bishop',
             'posts' => \App\Models\Post::all(),
             'routes'=> [
                 0 => [
-                  'title' => 'Home',
+                  'title' => 'Home BISHOP',
                   'icon' => 'mdi-view-dashboard-outline',
                   'route' => $prefix . '.dashboard',
                 ],

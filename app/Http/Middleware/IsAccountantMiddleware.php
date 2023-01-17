@@ -16,6 +16,10 @@ class IsAccountantMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->check() || !auth()->user()->role == \App\Models\User::is_accountant) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

@@ -16,6 +16,10 @@ class IsInternalAuditorMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->check() || !auth()->user()->role == \App\Models\User::is_internal_auditor) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

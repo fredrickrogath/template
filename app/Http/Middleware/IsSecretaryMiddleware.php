@@ -16,6 +16,10 @@ class IsSecretaryMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->check() || !auth()->user()->role == \App\Models\User::is_secretary) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

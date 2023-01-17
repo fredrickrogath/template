@@ -102,14 +102,14 @@ const isDark = useDark();
 </script>
 
 <script>
-import StatisticCards from "../Components/StatisticCards.vue";
-import TableData from "../Components/Tables.vue";
-import SparkLine from "../Components/SparkLine.vue";
-import DonghurtImage from "../Components/Charts/ApexCharts/DonghurtImage.vue";
+import StatisticCards from "../../Components/StatisticCards.vue";
+import TableData from "../../Components/Tables.vue";
+import SparkLine from "../../Components/SparkLine.vue";
+import DonghurtImage from "../../Components/Charts/ApexCharts/DonghurtImage.vue";
 
-import PieChart3D from "../Components/Charts/GoogleCharts/PieChart3D.vue";
+import PieChart3D from "../../Components/Charts/GoogleCharts/PieChart3D.vue";
 
-import Money from "../Components/Money.vue";
+import Money from "../../Components/Money.vue";
 
 export default {
     components: {

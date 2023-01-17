@@ -63,9 +63,9 @@ import SideBar from "./Components/SideBar.vue";
 
 //PAGES
 
-import HomePage from './MiniPages/HomePage.vue';
-import PageOne from './MiniPages/PageOne.vue';
-import PageTwo from './MiniPages/PageTwo.vue';
+import HomePage from './Modules/HeadModule/HomePage.vue';
+import PageOne from './Modules/HeadModule/PageOne.vue';
+import PageTwo from './Modules/HeadModule/PageTwo.vue';
 
 export default {
     components: {

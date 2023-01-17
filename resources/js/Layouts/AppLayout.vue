@@ -682,16 +682,19 @@ export default {
         JetResponsiveNavLink,
     },
 
-    mounted() {
-        if (this.areRoutesLoaded) {
+    created() {
+        if (!this.$store.getters["areRoutesLoaded"]) {
             this.storeRoutes();
         }
     },
 
+    // mounted() {console.log(this.$store.getters["areRoutesLoaded"])
+    //     console.log(this.$store.getters["getRoutes"][0].title)
+    // },
+
     data() {
         return {
             show: false,
-            areRoutesLoaded: false,
             showingNavigationDropdown: false,
         };
     },
@@ -710,6 +713,7 @@ export default {
         },
 
         logout() {
+            this.clearRoutes();
             this.$inertia.post(route("logout"));
         },
 
@@ -717,6 +721,10 @@ export default {
         storeRoutes() {
             this.$store.dispatch("areRoutesLoaded");
             this.$store.dispatch("storeRoutes", this.$page.props.routes);
+        },
+
+        clearRoutes() {
+            this.$store.dispatch("areRoutesLoaded");
         },
     },
 

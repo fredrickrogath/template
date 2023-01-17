@@ -16,6 +16,10 @@ class IsProcurementMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->check() || !auth()->user()->role == \App\Models\User::is_procurement) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }
