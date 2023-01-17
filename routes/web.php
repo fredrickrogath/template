@@ -16,6 +16,26 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
+    /*
+    |--------------------------------------------------------------------------
+    | ALL USER PASSWORD IS 123456789, LOGIN WITH EMAIL FROM DATABASE ACCORDING TO ROLES.
+    |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------
+    | ROLES ARE DEFINED IN USER MODEL AT THE DOWN SIDE...FUNDI ADEVO THE DR
+    |--------------------------------------------------------------------------
+    */
+    /*
+    |--------------------------------------------------------------------------
+    | FAKE DATA GENERATING ROUTE
+    |--------------------------------------------------------------------------
+    */
+    // App\Models\User::factory()->count(100)->create();
+    // App\Models\Post::factory()->count(1000)->create();
+    /*
+    |--------------------------------------------------------------------------
+    | END OF FAKE DATE GENERATING ROUTE
+    |--------------------------------------------------------------------------
+    */
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
