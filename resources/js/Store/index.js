@@ -18,7 +18,7 @@ const store = new Vuex.Store({
         numbers: counterModule,
     },
     state: {
-        // route: '',
+        posts: [],
         routes: [],
         areRoutesLoaded: false,
     },

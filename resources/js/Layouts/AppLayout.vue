@@ -685,6 +685,8 @@ export default {
     created() {
         if (!this.$store.getters["areRoutesLoaded"]) {
             this.storeRoutes();
+            // store posts data
+            this.storePosts();
         }
     },
 
@@ -721,6 +723,11 @@ export default {
         storeRoutes() {
             this.$store.dispatch("areRoutesLoaded");
             this.$store.dispatch("storeRoutes", this.$page.props.routes);
+        },
+
+        //Save posts into store
+        storePosts() {
+            this.$store.dispatch("storePosts", this.$page.props.posts);
         },
 
         clearRoutes() {

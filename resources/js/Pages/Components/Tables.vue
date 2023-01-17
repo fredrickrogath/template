@@ -48,6 +48,28 @@ const isDark = useDark();
 
 <script>
 export default {
+    props: {
+        // postsData: {
+            // type: Number,
+            // default: [],
+            // default(rawProps) {
+            //     return { message: "hello" };
+            // },
+
+            // DATA TYPES
+
+            // String
+            // Number
+            // Boolean
+            // Array
+            // Object
+            // Date
+            // Function
+            // Symbol
+
+            // disabled: [Boolean, Number]
+        // },
+    },
     data() {
         return {
             contentFullWidthWhenSideBarHides: 10,
@@ -68,7 +90,7 @@ export default {
 
                 // { text: "Iron (%)", value: "iron" },
             ],
-            posts: this.$page.props.posts,
+            posts: this.$store.getters["getPosts"],
         };
     },
 

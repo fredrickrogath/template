@@ -8,6 +8,11 @@ export default {
         return context.commit("areRoutesLoaded");
     },
     
+    //Mutate posts into the store
+    storePosts(context, posts){
+        return context.commit("storePosts", posts);
+    },
+
     // showTopBar(context, data) {
 
     //     context.commit("showTopBar");

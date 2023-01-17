@@ -5,8 +5,14 @@ export default {
         state.routes = routes;
     },
 
+    //Check if routes are stored
     areRoutesLoaded(state){
         state.areRoutesLoaded = !state.areRoutesLoaded;
+    },
+
+    //Save posts into the store
+    storePosts(state, posts){
+        state.posts = posts;
     }
 
     // showTopBar(state) {
